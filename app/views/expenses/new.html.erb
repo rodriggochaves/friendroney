@@ -24,6 +24,10 @@
     <% @expenses.each do |expense| %>
       <div>
         <%= expense.value %>
+        <%= form_for expense, url: edit_expense_path(expense.id) do |f| %>
+          <%= f.text_field :description %>
+          <%= f.submit %>
+        <% end %>
       </div>
     <% end %>
   </div>

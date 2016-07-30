@@ -9,7 +9,8 @@ RSpec.describe ExpensesController, type: :controller do
     end
 
       it "loads all imcompletes expenses" do
-        expense1, expense2 = Expense.create!(value: 2), Expense.create!(value: 3)
+        expense1, expense2 = Expense.create!(value: 2), 
+          Expense.create!(value: 3)
         get :new
         expect(assigns(:expenses)).to match_array([expense1, expense2])
       end
@@ -22,13 +23,13 @@ RSpec.describe ExpensesController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
+  describe "PATCH #update" do
     before :each do
       @expense = Expense.create(value: 2, description: "Pudim")
     end
 
     it "completes expenses with more information" do
-      put :update, id: @expense.id,
+      patch :update, id: @expense.id,
         expense: { description: "Almoço no Subway", value: "25" }
       @expense.reload
       expect(@expense.description).to eq("Almoço no Subway")
