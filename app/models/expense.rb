@@ -1,3 +1,3 @@
 class Expense < ActiveRecord::Base
-  validates :price, presence: true
+  validates :value, presence: true
 end

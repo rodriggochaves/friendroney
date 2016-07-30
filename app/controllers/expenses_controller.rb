@@ -3,7 +3,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    expense = Expense.new params.permit(:price, :description)
+    expense = Expense.new params.permit(:value, :description)
     if expense.save
       redirect_to root_path, notice: "Created successfully"
     else
