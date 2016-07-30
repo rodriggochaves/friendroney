@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   def new
+    @expenses = Expense.all
   end
 
   def create
