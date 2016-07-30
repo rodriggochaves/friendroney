@@ -14,4 +14,10 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "flatui"
+@import "font-awesome";
+@import "flatui";
+@import "expense";
+
+body {
+  background-color: #fefefe;
+}
