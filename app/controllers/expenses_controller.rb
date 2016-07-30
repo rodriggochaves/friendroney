@@ -2,6 +2,8 @@ class ExpensesController < ApplicationController
   def new
     @expense = Expense.new
     @expenses = Expense.all
+    @expenses = @expenses.sort_by{ |result| result.updated_at}.reverse
+    @balance = 0 + @expenses.map{ |e| e.value }.inject(:-).to_i
   end
 
   def create
@@ -20,6 +22,12 @@ class ExpensesController < ApplicationController
     else
       redirect_to root_path, alert: "Error updating expense"
     end
+  end
+
+  def destroy
+    expense = Expense.find(params[:id])
+    expense.destroy
+    redirect_to root_path
   end
 
   private
