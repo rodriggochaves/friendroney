@@ -21,8 +21,12 @@
     <h1>Register your expenses</h1>
 
     <%= form_for @expense, url: expenses_path do |f|%>
-      <%= f.number_field :value, class: "form-control"  %>
-      <%= f.submit %>
+      <div class="col-sm-6">
+        <%= f.number_field :value, class: "form-control"  %>
+      </div>
+      <div class="col-md-2">
+        <%= f.submit class: "btn" %>
+      </div>
     <% end %>
   </div>
   <div class="col-lg-6">
