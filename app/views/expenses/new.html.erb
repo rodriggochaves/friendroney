@@ -22,12 +22,14 @@
   <div class="col-lg-6">
     <h1>Your expenses</h1>
     <% @expenses.each do |expense| %>
-      <div>
-        <%= expense.value %>
-        <%= form_for expense, url: edit_expense_path(expense.id) do |f| %>
-          <%= f.text_field :description %>
-          <%= f.submit %>
-        <% end %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= form_for expense, url: edit_expense_path(expense.id) do |f| %>
+            <%= f.text_field :description %>
+            <%= f.submit %>
+          <% end %>
+          <%= expense.value %>
+        </div>
       </div>
     <% end %>
   </div>
