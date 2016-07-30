@@ -14,9 +14,9 @@
   <div class="col-lg-6">
     <h1>Register your expenses</h1>
 
-    <%= form_tag :expenses do %>
-      <%= number_field_tag :value  %>
-      <%= submit_tag %>
+    <%= form_for @expense, url: expenses_path do |f|%>
+      <%= f.number_field :value  %>
+      <%= f.submit %>
     <% end %>
   </div>
   <div class="col-lg-6">
