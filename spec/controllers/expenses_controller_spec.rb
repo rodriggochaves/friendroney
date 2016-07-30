@@ -7,6 +7,12 @@ RSpec.describe ExpensesController, type: :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
+
+    it "loads all imcompletes expenses" do
+      expense1, expense2 = Expense.create!(value: 2), Expense.create!(value: 3)
+      get :new
+      expect(assigns(:expenses)).to match_array([expense1, expense2])
+    end
   end
 
   describe "POST #create" do
