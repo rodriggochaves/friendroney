@@ -25,18 +25,24 @@
       <div class="panel panel-default">
         <div class="panel-body panel-expense">
           <%= form_for expense, url: edit_expense_path(expense.id) do |f| %>
-            <%= f.number_field :value %>
-            <%= f.text_field :description %>
-            <%= button_tag type: "submit", class: "btn btn-default" do %>
-              <%= fa_icon "refresh" %>
-            <% end %>
+            <div class="col-sm-4">            
+              <%= f.number_field :value, class: "form-control"%>
+            </div>
+            <div class="col-sm-4">
+              <%= f.text_field :description, class: "form-control" %>  
+            </div>
+            <div class="col-sm-4">
+              <%= button_tag type: "submit", class: "btn btn-default" do %>
+                <%= fa_icon "refresh" %>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
     <% end %>
     <div class="pull-right">
       <p><strong>Balance: </strong>
-      <%= @expenses.map{ |e| e.value }.reduce(:-) %></p>
+        <%= @expenses.map{ |e| e.value }.reduce(:-) %></p>
     </div>
   </div>
 </div>
