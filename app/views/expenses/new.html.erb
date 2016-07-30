@@ -16,29 +16,35 @@
   </div>
 </nav>
 
-<div class="container">
-  <div class="col-lg-6">
-    <h1>Register your expenses</h1>
+<div class="container-fluid">
+  <div class="col-lg-3">
+    <h4>Register your expenses</h4>
 
     <%= form_for @expense, url: expenses_path do |f|%>
-      <div class="col-sm-6">
-        <%= f.number_field :value, class: "form-control"  %>
-      </div>
-      <div class="col-md-2">
-        <%= f.submit class: "btn" %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.number_field :value, class: "form-control",
+           placeholder: "$" %>
+        </div>
+        <div class="col-md-2">
+          <%= f.submit class: "btn" %>
+        </div>
       </div>
     <% end %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-8">
     <h1>Your expenses</h1>
     <% @expenses.each do |expense| %>
       <div class="panel panel-default">
         <div class="panel-body panel-expense">
           <%= form_for expense, url: edit_expense_path(expense.id) do |f| %>
-            <div class="col-sm-5">
+            <div class="col-sm-2">
+              <%= time_ago_in_words(expense.created_at) %>
+            </div>
+            <div class="col-sm-4">
               <%= f.number_field :value, class: "form-control" %>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <%= f.text_field :description, class: "form-control",
                 placeholder: "Add a description..." %>  
             </div>
