@@ -8,17 +8,30 @@ RSpec.describe ExpensesController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it "loads all imcompletes expenses" do
-      expense1, expense2 = Expense.create!(value: 2), Expense.create!(value: 3)
-      get :new
-      expect(assigns(:expenses)).to match_array([expense1, expense2])
-    end
+      it "loads all imcompletes expenses" do
+        expense1, expense2 = Expense.create!(value: 2), Expense.create!(value: 3)
+        get :new
+        expect(assigns(:expenses)).to match_array([expense1, expense2])
+      end
   end
 
   describe "POST #create" do
     it "with only a positive value" do
       post :create, expense: { value: 2 }
       expect(Expense.last.value).to eq(2)
+    end
+  end
+
+  describe "PUT #update" do
+    before :each do
+      @expense = Expense.create(value: 2, description: "Pudim")
+    end
+
+    it "completes expenses with more information" do
+      put :update, id: @expense.id,
+        expense: { description: "Almoço no Subway", value: "25" }
+      @expense.reload
+      expect(@expense.description).to eq("Almoço no Subway")
     end
   end
 end
