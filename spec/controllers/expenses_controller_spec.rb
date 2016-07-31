@@ -8,12 +8,12 @@ RSpec.describe ExpensesController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-      it "loads all imcompletes expenses" do
-        expense1, expense2 = Expense.create!(value: 2), 
-          Expense.create!(value: 3)
-        get :new
-        expect(assigns(:expenses)).to match_array([expense1, expense2])
-      end
+    it "loads all imcompletes expenses" do
+      expense1, expense2 = Expense.create!(value: 2), 
+        Expense.create!(value: 3)
+      get :new
+      expect(assigns(:expenses)).to match_array([expense1, expense2])
+    end
   end
 
   describe "POST #create" do
@@ -44,7 +44,7 @@ RSpec.describe ExpensesController, type: :controller do
     it "destroy the expense" do
       id = @expense.id
       delete :destroy, id: @expense.id
-      expect(Expense.find(id)).to be nil
+      expect(Expense.where(id: id).count).to eq(0)
     end
   end
 end
