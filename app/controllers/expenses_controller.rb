@@ -40,6 +40,6 @@ class ExpensesController < ApplicationController
   end
 
   def calculate_total
-    @balance = Expense.total
+    @balance = - Expense.total
   end
 end

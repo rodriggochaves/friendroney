@@ -19,33 +19,37 @@
     <% end %>
   </div>
   <div class="col-md-8">
-    <h3>Explain this expenses</h3>
-    <% @expenses.each do |expense| %>
-      <div class="panel panel-default">
-        <div class="panel-body panel-expense">
-          <%= form_for expense, url: edit_expense_path(expense.id) do |f| %>
-                <div class="col-md-2">
-                  <%= time_ago_in_words(expense.updated_at) %>
-                </div>
-                <div class="form-group col-md-3">
-                  <%= f.number_field :value, class: "form-control" %>
-                </div>
-                <div class="form-group col-md-5">
-                  <%= f.text_field :description, class: "form-control",
-                    placeholder: "Add a description..." %>  
-                </div>
-                <div class="col-md-2">
-                  <%= button_tag type: "submit", class: "btn btn-default" do %>
-                    <%= fa_icon "refresh" %>
-                  <% end %>
-                  <%= link_to destroy_expense_path(expense.id), 
-                    method: :delete, class: "btn btn-default" do %>
-                    <%= fa_icon "trash" %>
-                  <% end %>
-                </div>
-          <% end %>
+    <% if @expenses.empty? %>
+      <h4>You have nothing to explain</h4>
+    <% else %>
+      <h3>Explain this expenses</h3>
+      <% @expenses.each do |expense| %>
+        <div class="panel panel-default">
+          <div class="panel-body panel-expense">
+            <%= form_for expense, url: edit_expense_path(expense.id) do |f| %>
+                  <div class="col-md-2">
+                    <%= time_ago_in_words(expense.updated_at) %>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <%= f.number_field :value, class: "form-control" %>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <%= f.text_field :description, class: "form-control",
+                      placeholder: "Add a description..." %>  
+                  </div>
+                  <div class="col-md-2">
+                    <%= button_tag type: "submit", class: "btn btn-default" do %>
+                      <%= fa_icon "refresh" %>
+                    <% end %>
+                    <%= link_to destroy_expense_path(expense.id), 
+                      method: :delete, class: "btn btn-default" do %>
+                      <%= fa_icon "trash" %>
+                    <% end %>
+                  </div>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

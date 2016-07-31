@@ -1,6 +1,4 @@
 class Expense < ActiveRecord::Base
-  before_save :description_empty_string_if_nil
-
   validates :value, presence: true, 
     :numericality => { :greater_than_or_equal_to => 0 }
 
@@ -11,9 +9,5 @@ class Expense < ActiveRecord::Base
 
   def self.total
     self.all.map{ |e| e.value }.inject(:+).to_i
-  end
-
-  def description_empty_string_if_nil
-    "" if nil
   end
 end
