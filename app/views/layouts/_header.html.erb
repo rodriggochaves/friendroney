@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "Roney", root_path, class: "navbar-brand" %>
+    </div>
+    <ul class="nav navbar-nav navbar-left">
+      <li>
+        <%= link_to "Despesas", expenses_path %>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <span>
+          <strong>Balance: </strong>
+          <%= @balance %>
+        </span>
+      </li>
+  </div>
+</nav>

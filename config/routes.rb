@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'expenses#new'
+  get 'expenses/' => 'expenses#index'
   post 'expenses/' => 'expenses#create'
   patch 'expenses/:id' => 'expenses#update', as: :edit_expense
   delete 'expenses/:id' => 'expenses#destroy', as: :destroy_expense

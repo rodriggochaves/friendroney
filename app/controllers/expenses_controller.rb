@@ -1,4 +1,9 @@
 class ExpensesController < ApplicationController
+  def index
+    @expenses = Expense.all
+    @balance = Expense.total
+  end
+
   def new
     @expense = Expense.new
     @expenses = Expense.imcompletes
