@@ -1,6 +1,7 @@
 class Expense < ActiveRecord::Base
-  validates :value, presence: true, 
-    :numericality => { :greater_than_or_equal_to => 0 }
+  validates :value, presence: { message: "can't be blank" }
+  validates :value, numericality: { :greater_than_or_equal_to => 0, 
+    message: "must be greater than 0" }
 
   def self.imcompletes
     where(description: "")

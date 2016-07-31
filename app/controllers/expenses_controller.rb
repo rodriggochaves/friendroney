@@ -15,7 +15,7 @@ class ExpensesController < ApplicationController
     if expense.save
       redirect_to root_path, notice: "Created successfully"
     else
-      redirect_to root_path, alert: "Error creating expense"
+      redirect_to root_path, alert: "Error creating expense: " + expense.errors.full_messages.to_sentence
     end
   end
 
