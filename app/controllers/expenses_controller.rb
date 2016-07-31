@@ -1,13 +1,13 @@
 class ExpensesController < ApplicationController
+  before_action :calculate_total, only: [:index, :new]
+
   def index
     @expenses = Expense.all
-    @balance = Expense.total
   end
 
   def new
     @expense = Expense.new
     @expenses = Expense.imcompletes
-    @balance = Expense.total
   end
 
   def create
@@ -37,5 +37,9 @@ class ExpensesController < ApplicationController
   private
   def expense_params
     params.require(:expense).permit(:description, :value)
+  end
+
+  def calculate_total
+    @balance = Expense.total
   end
 end
