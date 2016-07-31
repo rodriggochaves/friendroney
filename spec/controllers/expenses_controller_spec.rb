@@ -35,4 +35,16 @@ RSpec.describe ExpensesController, type: :controller do
       expect(@expense.description).to eq("Almoço no Subway")
     end
   end
+
+  describe "DELETE #destroy" do
+    before :each do
+      @expense = Expense.create(value: 2, description: "Compras de verão")
+    end
+
+    it "destroy the expense" do
+      id = @expense.id
+      delete :destroy, id: @expense.id
+      expect(Expense.find(id)).to be nil
+    end
+  end
 end
