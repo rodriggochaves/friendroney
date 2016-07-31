@@ -1,9 +1,8 @@
 class ExpensesController < ApplicationController
   def new
     @expense = Expense.new
-    @expenses = Expense.all
-    @expenses = @expenses.sort_by{ |result| result.updated_at}.reverse
-    @balance = 0 - @expenses.map{ |e| e.value }.inject(:+).to_i
+    @expenses = Expense.imcompletes
+    @balance = Expense.total
   end
 
   def create
