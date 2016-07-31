@@ -3,7 +3,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.new
     @expenses = Expense.all
     @expenses = @expenses.sort_by{ |result| result.updated_at}.reverse
-    @balance = 0 - @expenses.map{ |e| e.value }.inject(:-).to_i
+    @balance = 0 - @expenses.map{ |e| e.value }.inject(:+).to_i
   end
 
   def create
