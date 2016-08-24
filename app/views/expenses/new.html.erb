@@ -6,7 +6,7 @@
   <div class="col-lg-3">
     <h4>Did you spend more money?</h4>
 
-    <%= form_for @expense, url: expenses_path do |f|%>
+    <%= form_for @expense, url: expenses_path, remote: true do |f|%>
       <div class="row">
         <div class="form-group col-sm-6">
           <%= f.number_field :value, class: "form-control",
